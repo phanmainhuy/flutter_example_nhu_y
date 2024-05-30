@@ -1,6 +1,6 @@
 # flutter_example_helen
 
-A new Flutter project.
+A new Flutter project for demo - test example.
 
 ## Getting Started
 
