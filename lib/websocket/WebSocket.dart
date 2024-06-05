@@ -97,3 +97,8 @@ Future<String> _blobToString(html.Blob blob) async {
 
   return completer.future;
 }
+
+
+
+// document 
+// https://stackoverflow.com/questions/35164170/dart-html-convert-blob-to-file
