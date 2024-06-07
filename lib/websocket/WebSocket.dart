@@ -20,18 +20,25 @@ class SocketSingleTon {
 
   void connect() {
     try {
-      socket = WebSocket(
-          Uri.parse('${Constant.urlSocket}?token=${Constant.TokenUser}'));
+      // Create a WebSocket client.
+      socket = WebSocket(Uri.parse(
+          '${Constant.urlSocket}?token=${Constant.TokenUser}')); //'wss://echo.websocket.org?token='
       print('Attempting to connect to WebSocket');
 
+      // Handle the connection state.
       socket!.connection.listen((state) {
         if (state is Connected) {
           print('WebSocket connected');
+          // FFAppState().IsSocketOpen = true;
         } else if (state is Disconnected) {
           print('WebSocket disconnected');
+          // FFAppState().IsSocketOpen = false;
+          socket!.close();
         }
+        // Handle other states like reconnecting, etc.
       });
 
+      // Listen to messages from the server.
       socket!.messages.listen((message) async {
         try {
           if (message is String) {
@@ -42,20 +49,27 @@ class SocketSingleTon {
             final Map<String, dynamic> parsedJson = json.decode(decodedMessage);
             List<Map<String, dynamic>> result = [];
             result.add(parsedJson);
-            print('===48===');
-            print('parsedJson');
+            // FFAppState().ListSocketData = result;
+            print('--65.parsedJson--');
             print(result);
           }
         } catch (e) {
           print('Error handling the message: $e');
+          // FFAppState().IsSocketOpen = false;
+          socket!.close();
         }
       }, onDone: () {
         print('WebSocket connection closed by the server');
+        // FFAppState().IsSocketOpen = false;
+        socket!.close();
       }, onError: (error) {
         print('WebSocket error: $error');
+        // FFAppState().IsSocketOpen = false;
+        socket!.close();
       });
     } catch (e) {
       print('Error establishing a WebSocket connection: $e');
+      // FFAppState().IsSocketOpen = false;
       socket!.close();
     }
   }
@@ -65,6 +79,7 @@ class SocketSingleTon {
       socket!.send(message);
     } catch (e) {
       print('Error establishing a WebSocket connection: $e');
+      // FFAppState().IsSocketOpen = false;
       socket?.close();
     }
   }
@@ -97,7 +112,6 @@ Future<String> _blobToString(html.Blob blob) async {
 
   return completer.future;
 }
-
 
 
 // document 
