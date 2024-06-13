@@ -1,15 +1,21 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
+import 'dart:html' show WebSocket, FileReader;
 import 'dart:html' as html;
-import 'package:flutter_example_helen/util/const.dart';
-import 'package:web_socket_client/web_socket_client.dart';
+import 'package:flutter_example_helen/util/app_state.dart';
 
 void main() {
-  socket('Nhu Y ping');
+  try {
+    socket('Nhu Y ping');
+  } catch (e) {
+    print('---13---');
+    print(e.toString());
+  }
 }
 
 class SocketSingleTon {
+  int numb = 0;
   SocketSingleTon._();
   static final SocketSingleTon _instance = SocketSingleTon._();
   static SocketSingleTon getInstance() {
@@ -18,69 +24,78 @@ class SocketSingleTon {
 
   WebSocket? socket;
 
-  void connect() {
+  void connect(String message) {
     try {
+      String url = FFAppState().Ws;
+      String token = FFAppState().TokenUser;
+
       // Create a WebSocket client.
-      socket = WebSocket(Uri.parse(
-          '${Constant.urlSocket}?token=${Constant.TokenUser}')); //'wss://echo.websocket.org?token='
+      socket = WebSocket('$url?token=$token');
       print('Attempting to connect to WebSocket');
 
       // Handle the connection state.
-      socket!.connection.listen((state) {
-        if (state is Connected) {
+      socket!.onOpen.listen((state) {
+        print('---30.TYPE---');
+        print(state.type);
+        String stateType = state.type;
+        send(message);
+        if (stateType == 'open') {
           print('WebSocket connected');
-          // FFAppState().IsSocketOpen = true;
-        } else if (state is Disconnected) {
-          print('WebSocket disconnected');
-          // FFAppState().IsSocketOpen = false;
-          socket!.close();
         }
         // Handle other states like reconnecting, etc.
       });
 
       // Listen to messages from the server.
-      socket!.messages.listen((message) async {
+      socket!.onMessage.listen((message) async {
         try {
+          numb++;
+          print('number: ${numb}');
           if (message is String) {
             print('......message...... $message');
           } else {
             print('......message not string......');
-            String decodedMessage = await _blobToString(message);
+            String decodedMessage = await _blobToString(message.data);
             final Map<String, dynamic> parsedJson = json.decode(decodedMessage);
             List<Map<String, dynamic>> result = [];
             result.add(parsedJson);
-            // FFAppState().ListSocketData = result;
+            FFAppState().ListSocketData = result;
             print('--65.parsedJson--');
             print(result);
           }
         } catch (e) {
-          print('Error handling the message: $e');
-          // FFAppState().IsSocketOpen = false;
-          socket!.close();
+          print('Error handling the message: ');
+          print(e.toString());
+          _closeConnection();
         }
       }, onDone: () {
+        print('---73---');
         print('WebSocket connection closed by the server');
-        // FFAppState().IsSocketOpen = false;
-        socket!.close();
+        _closeConnection();
       }, onError: (error) {
+        print('---71---');
         print('WebSocket error: $error');
-        // FFAppState().IsSocketOpen = false;
-        socket!.close();
+        _closeConnection();
       });
     } catch (e) {
+      print('---75---');
       print('Error establishing a WebSocket connection: $e');
-      // FFAppState().IsSocketOpen = false;
-      socket!.close();
+      _closeConnection();
     }
+  }
+
+  void _closeConnection() {
+    numb = 0;
+    FFAppState().IsSocketOpen = false;
+    socket?.close(1000, 'CLOSE_NORMAL');
   }
 
   void send(String message) {
     try {
+      print('---131---');
       socket!.send(message);
     } catch (e) {
       print('Error establishing a WebSocket connection: $e');
-      // FFAppState().IsSocketOpen = false;
-      socket?.close();
+      _closeConnection();
     }
   }
 }
@@ -88,16 +103,16 @@ class SocketSingleTon {
 Future<void> socket(String message) async {
   try {
     if (SocketSingleTon.getInstance().socket == null) {
-      SocketSingleTon.getInstance().connect();
+      SocketSingleTon.getInstance().connect(message);
     }
-    SocketSingleTon.getInstance().send(message);
+    // SocketSingleTon.getInstance().send(message);
   } catch (e) {
     print("Error sendMessage $e");
   }
 }
 
 Future<String> _blobToString(html.Blob blob) async {
-  final reader = html.FileReader();
+  final reader = FileReader();
   final completer = Completer<String>();
 
   reader.onLoadEnd.listen((event) {
@@ -112,7 +127,3 @@ Future<String> _blobToString(html.Blob blob) async {
 
   return completer.future;
 }
-
-
-// document 
-// https://stackoverflow.com/questions/35164170/dart-html-convert-blob-to-file
