@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
-import 'package:flutter/material.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -17,7 +15,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Center(
           child: DropDownFlagWidget(
-            selectedData: '6',
+            selectedData: 'VND_USDT',
             boldText: false,
             borderRadius: 12,
             // openMenuIcon: const Icon(Icons.ac_unit_outlined),
@@ -63,25 +61,10 @@ class DropDownFlagWidget extends StatefulWidget {
 }
 
 class _DropDownFlagWidgetState extends State<DropDownFlagWidget> {
-  String? selectedValue = '6'; // Corresponds to 'VND_USDT'
+  String? selectedValue = 'VND_USDT'; // Corresponds to 'VND_USDT'
 
   IconData nextIcon = Icons.arrow_forward_ios_outlined;
   IconData downIcon = Icons.arrow_downward_outlined;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-
-    dynamic x = imageData.map((item) => {
-          print(item),
-          print(item['id']),
-          print(item['label']),
-          print('$imagePath${item['image']}'),
-          print('*' * 20),
-        });
-    print(x.toString());
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +75,7 @@ class _DropDownFlagWidgetState extends State<DropDownFlagWidget> {
         isExpanded: true,
         items: imageData
             .map((item) => DropdownMenuItem<String>(
-                  value: item['id'],
+                  value: item['label'],
                   child: Row(
                     children: [
                       Image.network(
@@ -167,77 +150,77 @@ class _DropDownFlagWidgetState extends State<DropDownFlagWidget> {
 }
 
 String imagePath =
-    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/cryptoorder-2t6vby/assets/';
+    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/dashboardlp-7r9qca/assets/';
 
 List<Map<String, String>> imageData = [
   {
     'id': '1',
     'label': 'THB_USDT',
-    'image': 'wzncrhi5qr5a/1.thailand-THB.png',
+    'image': 'nd2oexwyrzj0/1.thailand-THB.png',
   },
   {
     'id': '2',
     'label': 'PHP_USDT',
-    'image': 'jsvad1hxvzkr/2.philippines-PHP.png'
+    'image': 'q2raub5nc7ty/2.philippines-PHP.png'
   },
   {
     'id': '3',
     'label': 'MYR_USDT',
-    'image': '81k295on31go/3.myanmar-MYR.png',
+    'image': 'tc3t7a7o73sz/3.myanmar-MYR.png',
   },
   {
     'id': '4',
     'label': 'SGD_USDT',
-    'image': 'k6rw90k0bc75/4.singapore-SGD.png',
+    'image': '75pdenhkrpul/4.singapore-SGD.png',
   },
   {
     'id': '5',
     'label': 'KHR_USDT',
-    'image': '7mg7vdyv5r32/5.cambodia-KHR.jpeg',
+    'image': '7jkvb1kfl0yp/5.cambodia-KHR.png',
   },
   {
     'id': '6',
     'label': 'VND_USDT',
-    'image': 'p9ndn9jx3cvs/6.vietnam-VND.png',
+    'image': 'yyfl86wq2cu9/6.vietnam-VND.png',
   },
   {
     'id': '7',
     'label': 'CNY_USDT',
-    'image': 'yanycwpcw2yh/7.china-CNY.png',
+    'image': 'r88lu2ok1txd/7.china-CNY.png',
   },
   {
     'id': '8',
     'label': 'HKD_USDT',
-    'image': 'qgkalsjtv9ou/8.hongkong-HKD.png',
+    'image': '3t6n4jdysdt8/8.hongkong-HKD.png',
   },
   {
     'id': '9',
     'label': 'JPY_USDT',
-    'image': 'f2kozfk6m9tm/9.japan-JPY.png',
+    'image': 'fw22anz8d1t8/9.japan-JPY.png',
   },
   {
     'id': '10',
     'label': 'KRW_USDT',
-    'image': 'tlyyxpnaxp2c/10.korea-KRW.png',
+    'image': '4fv10kxgll8r/10.korea-KRW.png',
   },
   {
     'id': '11',
     'label': 'IDR_USDT',
-    'image': 'hvjkw9y3widq/11.indonesia-IDR.png'
+    'image': 'bz2aw113guxa/11.indonesia-IDR.png'
   },
   {
     'id': '12',
     'label': 'CAD_USDT',
-    'image': '8zioqr8ww21n/12.canada-CAD.png',
+    'image': '7z7c9qtam0sj/12.canada-CAD.png',
   },
   {
     'id': '13',
     'label': 'AUD_USDT',
-    'image': 's3dzv3l69wi5/13.australia-AUD.png'
+    'image': 'nx8ovp8koufx/13.australia-AUD.png'
   },
   {
     'id': '14',
     'label': 'SAR_USDT',
-    'image': 'y74r9ppgx5gi/14.macao-SAR.png',
+    'image': 'br3b75v8shjl/14.macao-SAR.png',
   },
 ];
