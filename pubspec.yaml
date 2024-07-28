@@ -40,6 +40,8 @@ dependencies:
   web_socket_client: ^0.1.2
   qr_flutter: ^4.1.0
   font_awesome_flutter: ^9.0.0
+  loading_indicator: ^3.1.1
+  stacked_notification_cards: any
 
 dev_dependencies:
   flutter_test:
