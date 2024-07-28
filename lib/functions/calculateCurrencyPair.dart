@@ -6,7 +6,6 @@ String? calculateCurrencyPair(
   String? usdt,
 ) {
   /// MODIFY CODE ONLY BELOW THIS LINE
-
   if (price == null || usdt == null || price.isEmpty || usdt.isEmpty) {
     return '';
   } else if (price == '0' || usdt == '0') {
@@ -16,10 +15,8 @@ String? calculateCurrencyPair(
       // Find the number of decimal places in price and usdt
       int priceDecimals =
           price.contains('.') ? price.length - price.indexOf('.') - 1 : 0;
-      print('priceDecimals $priceDecimals');
       int usdtDecimals =
           usdt.contains('.') ? usdt.length - usdt.indexOf('.') - 1 : 0;
-      print('usdtDecimals $usdtDecimals');
 
       // Remove the decimal points
       BigInt priceBigInt = BigInt.parse(price.replaceAll('.', ''));
