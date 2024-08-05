@@ -1,10 +1,10 @@
 String formatMoney(String input) {
   /// MODIFY CODE ONLY BELOW THIS LINE
   try {
-    String str = input;
+    String str = input.replaceAll(',', '');
     String decimalNum = '';
     if (str.contains('.')) {
-      decimalNum = '.' + str.split('.')[1];
+      decimalNum = '.${str.split('.')[1]}';
       str = str.split('.')[0];
     }
 
