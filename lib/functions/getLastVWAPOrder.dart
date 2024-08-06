@@ -1,6 +1,7 @@
 double getLastVWAPOrder(
   dynamic data,
   String uuid,
+  double lastVWAP,
 ) {
   /// MODIFY CODE ONLY BELOW THIS LINE
 
@@ -16,7 +17,15 @@ double getLastVWAPOrder(
         (data['data'] as List).where((item) => item['uuid'] == uuid).toList();
 
     int lengthList = filteredList.length;
-    print(datafirst[0]);
+
+    // print('lengthList: $lengthList');
+    // print('lastVWAP: $lastVWAP');
+    // print('uuid: $uuid');
+    if (lengthList == 0) {
+      return lastVWAP;
+    }
+
+    // print(datafirst[0]);
 
     // if (lengthList > 0) {
     //   List<double> arrayVwap =
@@ -36,7 +45,7 @@ double getLastVWAPOrder(
     for (int i = 0; i < lengthList; i++) {
       if (int.parse(filteredList[i]['timestamp']) <
           int.parse(datafirst[0]['timestamp'])) {
-        print(filteredList[i]['vwap']);
+        // print(filteredList[i]['vwap']);
         return filteredList[i]['vwap'];
       }
     }
