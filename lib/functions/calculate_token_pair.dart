@@ -1,11 +1,11 @@
-import 'package:decimal/decimal.dart';
+// import 'package:double/double.dart';
 
 void main() {
   print(calculateTokenPair('6', '23', '25000')); // Should print "0.04"
-  // Decimal x = (Decimal.parse(
+  // double x = (double.parse(
   //             '123123123123123123123123121231230001231231231231231231231231230') /
-  //         Decimal.parse(10.toString()))
-  //     .toDecimal();
+  //         double.parse(10.toString()))
+  //     .todouble();
 
   // print(x);
 }
@@ -30,11 +30,11 @@ String? calculateTokenPair(
     return '0';
   } else {
     try {
-      Decimal priceInputDecimal = Decimal.parse(_priceInput);
-      Decimal priceMarketDecimal = Decimal.parse(_priceMarket);
+      double priceInputdouble = double.parse(_priceInput);
+      double priceMarketdouble = double.parse(_priceMarket);
 
       // Perform the division
-      Decimal result = (priceInputDecimal / priceMarketDecimal).toDecimal();
+      double result = (priceInputdouble / priceMarketdouble);
 
       // Format the result to match the expected output
       String resultString = result.toString().replaceFirst(RegExp(r'0+$'), '');
@@ -56,17 +56,17 @@ String formatMoney(String input) {
   /// MODIFY CODE ONLY BELOW THIS LINE
   try {
     String str = input;
-    String decimalNum = '';
+    String doubleNum = '';
     if (str.contains('.')) {
-      decimalNum = '.${str.split('.')[1]}';
+      doubleNum = '.${str.split('.')[1]}';
       str = str.split('.')[0];
     }
 
-    // Remove trailing zeros in the decimal part
-    if (decimalNum.isNotEmpty) {
-      decimalNum = decimalNum.replaceFirst(RegExp(r'0+$'), '');
-      if (decimalNum == '.') {
-        decimalNum = ''; // Remove decimal point if no digits follow
+    // Remove trailing zeros in the double part
+    if (doubleNum.isNotEmpty) {
+      doubleNum = doubleNum.replaceFirst(RegExp(r'0+$'), '');
+      if (doubleNum == '.') {
+        doubleNum = ''; // Remove double point if no digits follow
       }
     }
 
@@ -77,7 +77,7 @@ String formatMoney(String input) {
         buffer.write(',');
       }
     }
-    return buffer.toString().split('').reversed.join('') + decimalNum;
+    return buffer.toString().split('').reversed.join('') + doubleNum;
   } catch (e) {
     print('ERROR formatMoney: ' + e.toString());
     return input;
