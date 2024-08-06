@@ -1,4 +1,4 @@
-import 'package:flutter_example_helen/functions/format_money.dart';
+import 'package:flutter_example_helen/functions/lp_platform/format_money.dart';
 
 String? calculateCurrencyPair(
   String? pair,
