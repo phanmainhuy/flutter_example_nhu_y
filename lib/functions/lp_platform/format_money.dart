@@ -1,3 +1,7 @@
+void main() {
+  print(formatMoney('19386012381.972'));
+}
+
 String formatMoney(String input) {
   /// MODIFY CODE ONLY BELOW THIS LINE
   try {
