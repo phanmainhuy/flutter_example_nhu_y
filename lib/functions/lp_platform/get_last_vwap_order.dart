@@ -23,9 +23,9 @@ double getLastVWAPOrder(
 
     int lengthList = filteredList.length;
 
-    print('lengthList: $lengthList');
-    print('lastVWAP: $lastVWAP');
-    print('uuid: $uuid');
+    // print('lengthList: $lengthList');
+    // print('lastVWAP: $lastVWAP');
+    // print('uuid: $uuid');
     if (lengthList == 1 || lengthList == 0) {
       return lastVWAP;
     }
@@ -54,7 +54,7 @@ double getLastVWAPOrder(
         return filteredList[i]['vwap'];
       }
     }
-    return 0;
+    return lastVWAP;
   } catch (e) {
     print(e);
     return 0;
