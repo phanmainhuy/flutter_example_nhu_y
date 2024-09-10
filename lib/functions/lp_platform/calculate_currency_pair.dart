@@ -39,7 +39,7 @@ String? calculateCurrencyPair(
         resultString = resultString.split('.')[0];
       }
 
-      return formatMoney(resultString);
+      return formatMoney(resultString, false, 'VND_USDT');
     } catch (e) {
       print('ERROR calculateCurrencyPair: $e');
       return '';
