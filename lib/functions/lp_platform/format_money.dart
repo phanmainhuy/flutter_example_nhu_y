@@ -1,15 +1,32 @@
 void main() {
-  print(formatMoney('19386012381.972'));
+  print(formatMoney('19386012381.972', true, 'VND_USDT'));
 }
 
-String formatMoney(String input) {
+String? formatMoney(
+  String input,
+  bool calculateToken,
+  String? pair,
+) {
   /// MODIFY CODE ONLY BELOW THIS LINE
+
   try {
     String str = input.replaceAll(',', '');
     String decimalNum = '';
+    String negative = '';
+
+    if (str == '0') {
+      return '0';
+    }
+    if (calculateToken) {
+      str = (double.parse(str) / 1000000).toString();
+    }
     if (str.contains('.')) {
-      decimalNum = '.${str.split('.')[1]}';
+      decimalNum = '.' + str.split('.')[1];
       str = str.split('.')[0];
+    }
+    if (str.contains('-')) {
+      negative = '-';
+      str = str.replaceAll('-', '');
     }
 
     // Remove trailing zeros in the decimal part
@@ -27,7 +44,13 @@ String formatMoney(String input) {
         buffer.write(',');
       }
     }
-    return buffer.toString().split('').reversed.join('') + decimalNum;
+    if (calculateToken == false && pair == 'VND_USDT') {
+      return negative + buffer.toString().split('').reversed.join('');
+    } else {
+      return negative +
+          buffer.toString().split('').reversed.join('') +
+          decimalNum;
+    }
   } catch (e) {
     print('ERROR formatMoney: ' + e.toString());
     return input;
