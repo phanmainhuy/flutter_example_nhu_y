@@ -16,23 +16,24 @@ class OrderDataItemStruct {
     String? userId,
     String? lpId,
     String? pair,
-    int? fiat,
-    int? price,
     String? token,
-    String? idLocked,
     String? timestamp,
     String? orderType,
     String? status,
     String? reffNumber,
     String? qrCode,
     String? signature,
-    int? vwap,
     String? balance,
     String? lpAdminId,
     String? profitLoss,
     // List<OrderStateItemStruct>? states,
     // BankModelStruct? lpBank,
     // BankModelStruct? userBank,
+    bool? isDisable,
+    double? vwap,
+    double? fiat,
+    double? price,
+    List<String>? idLocked,
   })  : _key = key,
         _id = id,
         _rev = rev,
@@ -44,10 +45,7 @@ class OrderDataItemStruct {
         _userId = userId,
         _lpId = lpId,
         _pair = pair,
-        _fiat = fiat,
-        _price = price,
         _token = token,
-        _idLocked = idLocked,
         _timestamp = timestamp,
         _orderType = orderType,
         _status = status,
@@ -57,10 +55,14 @@ class OrderDataItemStruct {
         _vwap = vwap,
         _balance = balance,
         _lpAdminId = lpAdminId,
-        _profitLoss = profitLoss;
-  // _states = states,
-  // _lpBank = lpBank,
-  // _userBank = userBank;
+        _profitLoss = profitLoss,
+        // _states = states,
+        // _lpBank = lpBank,
+        // _userBank = userBank,
+        _isDisable = isDisable,
+        _price = price,
+        _fiat = fiat;
+  // _idLocked = idLocked;
 
   // "Key" field.
   String? _key;
@@ -139,37 +141,12 @@ class OrderDataItemStruct {
 
   bool hasPair() => _pair != null;
 
-  // "fiat" field.
-  int? _fiat;
-  int get fiat => _fiat ?? 0;
-  set fiat(int? val) => _fiat = val;
-
-  void incrementFiat(int amount) => fiat = fiat + amount;
-
-  bool hasFiat() => _fiat != null;
-
-  // "price" field.
-  int? _price;
-  int get price => _price ?? 0;
-  set price(int? val) => _price = val;
-
-  void incrementPrice(int amount) => price = price + amount;
-
-  bool hasPrice() => _price != null;
-
   // "token" field.
   String? _token;
   String get token => _token ?? '';
   set token(String? val) => _token = val;
 
   bool hasToken() => _token != null;
-
-  // "idLocked" field.
-  String? _idLocked;
-  String get idLocked => _idLocked ?? '';
-  set idLocked(String? val) => _idLocked = val;
-
-  bool hasIdLocked() => _idLocked != null;
 
   // "timestamp" field.
   String? _timestamp;
@@ -213,15 +190,6 @@ class OrderDataItemStruct {
 
   bool hasSignature() => _signature != null;
 
-  // "vwap" field.
-  int? _vwap;
-  int get vwap => _vwap ?? 0;
-  set vwap(int? val) => _vwap = val;
-
-  void incrementVwap(int amount) => vwap = vwap + amount;
-
-  bool hasVwap() => _vwap != null;
-
   // "balance" field.
   String? _balance;
   String get balance => _balance ?? '';
@@ -244,37 +212,82 @@ class OrderDataItemStruct {
   bool hasProfitLoss() => _profitLoss != null;
 
   // "states" field.
-  // List<OrderStateItemStruct>? _states;
-  // List<OrderStateItemStruct> get states => _states ?? const [];
-  // set states(List<OrderStateItemStruct>? val) => _states = val;
+  // // List<OrderStateItemStruct>? _states;
+  // // List<OrderStateItemStruct> get states => _states ?? const [];
+  // // set states(List<OrderStateItemStruct>? val) => _states = val;
 
-  // void updateStates(Function(List<OrderStateItemStruct>) updateFn) {
-  //   updateFn(_states ??= []);
-  // }
+  // // void updateStates(Function(List<OrderStateItemStruct>) updateFn) {
+  // //   updateFn(_states ??= []);
+  // // }
 
-  // bool hasStates() => _states != null;
+  // // bool hasStates() => _states != null;
 
-  // // "lpBank" field.
-  // BankModelStruct? _lpBank;
-  // BankModelStruct get lpBank => _lpBank ?? BankModelStruct();
-  // set lpBank(BankModelStruct? val) => _lpBank = val;
+  // // // "lpBank" field.
+  // // BankModelStruct? _lpBank;
+  // // BankModelStruct get lpBank => _lpBank ?? BankModelStruct();
+  // // set lpBank(BankModelStruct? val) => _lpBank = val;
 
-  // void updateLpBank(Function(BankModelStruct) updateFn) {
-  //   updateFn(_lpBank ??= BankModelStruct());
-  // }
+  // // void updateLpBank(Function(BankModelStruct) updateFn) {
+  // //   updateFn(_lpBank ??= BankModelStruct());
+  // // }
 
-  // bool hasLpBank() => _lpBank != null;
+  // // bool hasLpBank() => _lpBank != null;
 
-  // // "userBank" field.
-  // BankModelStruct? _userBank;
-  // BankModelStruct get userBank => _userBank ?? BankModelStruct();
-  // set userBank(BankModelStruct? val) => _userBank = val;
+  // // // "userBank" field.
+  // // BankModelStruct? _userBank;
+  // // BankModelStruct get userBank => _userBank ?? BankModelStruct();
+  // // set userBank(BankModelStruct? val) => _userBank = val;
 
-  // void updateUserBank(Function(BankModelStruct) updateFn) {
-  //   updateFn(_userBank ??= BankModelStruct());
-  // }
+  // // void updateUserBank(Function(BankModelStruct) updateFn) {
+  // //   updateFn(_userBank ??= BankModelStruct());
+  // // }
 
   // bool hasUserBank() => _userBank != null;
+
+  // "isDisable" field.
+  bool? _isDisable;
+  bool get isDisable => _isDisable ?? false;
+  set isDisable(bool? val) => _isDisable = val;
+
+  bool hasIsDisable() => _isDisable != null;
+
+  // "vwap" field.
+  double? _vwap;
+  double get vwap => _vwap ?? 0.0;
+  set vwap(double? val) => _vwap = val;
+
+  // void incrementVwap(double amount) => vwap = vwap + amount;
+
+  // bool hasVwap() => _vwap != null;
+
+  // "fiat" field.
+  double? _fiat;
+  double get fiat => _fiat ?? 0.0;
+  set fiat(double? val) => _fiat = val;
+
+  void incrementFiat(double amount) => fiat = fiat + amount;
+
+  bool hasFiat() => _fiat != null;
+
+  // "price" field.
+  double? _price;
+  double get price => _price ?? 0.0;
+  set price(double? val) => _price = val;
+
+  void incrementPrice(double amount) => price = price + amount;
+
+  bool hasPrice() => _price != null;
+
+  // // "idLocked" field.
+  // List<String>? _idLocked;
+  // List<String> get idLocked => _idLocked ?? const [];
+  // set idLocked(List<String>? val) => _idLocked = val;
+
+  // void updateIdLocked(Function(List<String>) updateFn) {
+  //   updateFn(_idLocked ??= []);
+  // }
+
+  // bool hasIdLocked() => _idLocked != null;
 
   static OrderDataItemStruct fromMap(Map<String, dynamic> data) =>
       OrderDataItemStruct(
@@ -289,17 +302,13 @@ class OrderDataItemStruct {
         userId: data['userId'] as String?,
         lpId: data['lpId'] as String?,
         pair: data['pair'] as String?,
-        fiat: (data['fiat']) as int,
-        price: (data['price']) as int,
         token: data['token'] as String?,
-        idLocked: data['idLocked'] as String?,
         timestamp: data['timestamp'] as String?,
         orderType: data['orderType'] as String?,
         status: data['status'] as String?,
         reffNumber: data['reffNumber'] as String?,
         qrCode: data['qrCode'] as String?,
         signature: data['signature'] as String?,
-        vwap: (data['vwap']) as int,
         balance: data['balance'] as String?,
         lpAdminId: data['lpAdminId'] as String?,
         profitLoss: data['profitLoss'] as String?,
@@ -309,6 +318,11 @@ class OrderDataItemStruct {
         // ),
         // lpBank: BankModelStruct.maybeFromMap(data['lpBank']),
         // userBank: BankModelStruct.maybeFromMap(data['userBank']),
+        // isDisable: data['isDisable'] as bool?,
+        // vwap: castToType<double>(data['vwap']),
+        // fiat: castToType<double>(data['fiat']),
+        // price: castToType<double>(data['price']),
+        // idLocked: getDataList(data['idLocked']),
       );
 
   static OrderDataItemStruct? maybeFromMap(dynamic data) => data is Map
@@ -327,23 +341,24 @@ class OrderDataItemStruct {
         'userId': _userId,
         'lpId': _lpId,
         'pair': _pair,
-        'fiat': _fiat,
-        'price': _price,
         'token': _token,
-        'idLocked': _idLocked,
         'timestamp': _timestamp,
         'orderType': _orderType,
         'status': _status,
         'reffNumber': _reffNumber,
         'qrCode': _qrCode,
         'signature': _signature,
-        'vwap': _vwap,
         'balance': _balance,
         'lpAdminId': _lpAdminId,
         'profitLoss': _profitLoss,
         // 'states': _states?.map((e) => e.toMap()).toList(),
         // 'lpBank': _lpBank?.toMap(),
         // 'userBank': _userBank?.toMap(),
+        // 'isDisable': _isDisable,
+        'vwap': _vwap,
+        'fiat': _fiat,
+        'price': _price,
+        // 'idLocked': _idLocked,
       };
 
   // @override
@@ -392,20 +407,8 @@ class OrderDataItemStruct {
   //         _pair,
   //         ParamType.String,
   //       ),
-  //       'fiat': serializeParam(
-  //         _fiat,
-  //         ParamType.int,
-  //       ),
-  //       'price': serializeParam(
-  //         _price,
-  //         ParamType.int,
-  //       ),
   //       'token': serializeParam(
   //         _token,
-  //         ParamType.String,
-  //       ),
-  //       'idLocked': serializeParam(
-  //         _idLocked,
   //         ParamType.String,
   //       ),
   //       'timestamp': serializeParam(
@@ -432,10 +435,6 @@ class OrderDataItemStruct {
   //         _signature,
   //         ParamType.String,
   //       ),
-  //       'vwap': serializeParam(
-  //         _vwap,
-  //         ParamType.int,
-  //       ),
   //       'balance': serializeParam(
   //         _balance,
   //         ParamType.String,
@@ -460,6 +459,27 @@ class OrderDataItemStruct {
   //       'userBank': serializeParam(
   //         _userBank,
   //         ParamType.DataStruct,
+  //       ),
+  //       'isDisable': serializeParam(
+  //         _isDisable,
+  //         ParamType.bool,
+  //       ),
+  //       'vwap': serializeParam(
+  //         _vwap,
+  //         ParamType.double,
+  //       ),
+  //       'fiat': serializeParam(
+  //         _fiat,
+  //         ParamType.double,
+  //       ),
+  //       'price': serializeParam(
+  //         _price,
+  //         ParamType.double,
+  //       ),
+  //       'idLocked': serializeParam(
+  //         _idLocked,
+  //         ParamType.String,
+  //         isList: true,
   //       ),
   //     }.withoutNulls;
 
@@ -520,23 +540,8 @@ class OrderDataItemStruct {
   //         ParamType.String,
   //         false,
   //       ),
-  //       fiat: deserializeParam(
-  //         data['fiat'],
-  //         ParamType.int,
-  //         false,
-  //       ),
-  //       price: deserializeParam(
-  //         data['price'],
-  //         ParamType.int,
-  //         false,
-  //       ),
   //       token: deserializeParam(
   //         data['token'],
-  //         ParamType.String,
-  //         false,
-  //       ),
-  //       idLocked: deserializeParam(
-  //         data['idLocked'],
   //         ParamType.String,
   //         false,
   //       ),
@@ -568,11 +573,6 @@ class OrderDataItemStruct {
   //       signature: deserializeParam(
   //         data['signature'],
   //         ParamType.String,
-  //         false,
-  //       ),
-  //       vwap: deserializeParam(
-  //         data['vwap'],
-  //         ParamType.int,
   //         false,
   //       ),
   //       balance: deserializeParam(
@@ -608,6 +608,31 @@ class OrderDataItemStruct {
   //         false,
   //         structBuilder: BankModelStruct.fromSerializableMap,
   //       ),
+  //       isDisable: deserializeParam(
+  //         data['isDisable'],
+  //         ParamType.bool,
+  //         false,
+  //       ),
+  //       vwap: deserializeParam(
+  //         data['vwap'],
+  //         ParamType.double,
+  //         false,
+  //       ),
+  //       fiat: deserializeParam(
+  //         data['fiat'],
+  //         ParamType.double,
+  //         false,
+  //       ),
+  //       price: deserializeParam(
+  //         data['price'],
+  //         ParamType.double,
+  //         false,
+  //       ),
+  //       idLocked: deserializeParam<String>(
+  //         data['idLocked'],
+  //         ParamType.String,
+  //         true,
+  //       ),
   //     );
 
   // @override
@@ -628,23 +653,24 @@ class OrderDataItemStruct {
   //       userId == other.userId &&
   //       lpId == other.lpId &&
   //       pair == other.pair &&
-  //       fiat == other.fiat &&
-  //       price == other.price &&
   //       token == other.token &&
-  //       idLocked == other.idLocked &&
   //       timestamp == other.timestamp &&
   //       orderType == other.orderType &&
   //       status == other.status &&
   //       reffNumber == other.reffNumber &&
   //       qrCode == other.qrCode &&
   //       signature == other.signature &&
-  //       vwap == other.vwap &&
   //       balance == other.balance &&
   //       lpAdminId == other.lpAdminId &&
   //       profitLoss == other.profitLoss &&
   //       listEquality.equals(states, other.states) &&
   //       lpBank == other.lpBank &&
-  //       userBank == other.userBank;
+  //       userBank == other.userBank &&
+  //       isDisable == other.isDisable &&
+  //       vwap == other.vwap &&
+  //       fiat == other.fiat &&
+  //       price == other.price &&
+  //       listEquality.equals(idLocked, other.idLocked);
   // }
 
   // @override
@@ -660,23 +686,24 @@ class OrderDataItemStruct {
   //       userId,
   //       lpId,
   //       pair,
-  //       fiat,
-  //       price,
   //       token,
-  //       idLocked,
   //       timestamp,
   //       orderType,
   //       status,
   //       reffNumber,
   //       qrCode,
   //       signature,
-  //       vwap,
   //       balance,
   //       lpAdminId,
   //       profitLoss,
   //       states,
   //       lpBank,
-  //       userBank
+  //       userBank,
+  //       isDisable,
+  //       vwap,
+  //       fiat,
+  //       price,
+  //       idLocked
   //     ]);
 }
 
@@ -692,22 +719,22 @@ OrderDataItemStruct createOrderDataItemStruct({
   String? userId,
   String? lpId,
   String? pair,
-  int? fiat,
-  int? price,
   String? token,
-  String? idLocked,
   String? timestamp,
   String? orderType,
   String? status,
   String? reffNumber,
   String? qrCode,
   String? signature,
-  int? vwap,
   String? balance,
   String? lpAdminId,
   String? profitLoss,
   // BankModelStruct? lpBank,
   // BankModelStruct? userBank,
+  bool? isDisable,
+  double? vwap,
+  double? fiat,
+  double? price,
 }) =>
     OrderDataItemStruct(
       key: key,
@@ -721,20 +748,20 @@ OrderDataItemStruct createOrderDataItemStruct({
       userId: userId,
       lpId: lpId,
       pair: pair,
-      fiat: fiat,
-      price: price,
       token: token,
-      idLocked: idLocked,
       timestamp: timestamp,
       orderType: orderType,
       status: status,
       reffNumber: reffNumber,
       qrCode: qrCode,
       signature: signature,
-      vwap: vwap,
       balance: balance,
       lpAdminId: lpAdminId,
       profitLoss: profitLoss,
-      // lpBank: lpBank,
-      // userBank: userBank,
+      // lpBank: lpBank ?? BankModelStruct(),
+      // userBank: userBank ?? BankModelStruct(),
+      isDisable: isDisable,
+      vwap: vwap,
+      fiat: fiat,
+      price: price,
     );

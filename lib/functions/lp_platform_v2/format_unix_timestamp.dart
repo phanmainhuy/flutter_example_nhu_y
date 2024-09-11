@@ -15,7 +15,8 @@ String formatUnixTimestamp(String inputTimestamp) {
   try {
     int timestamp = int.parse(inputTimestamp);
 
-    DateTime date = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
+    DateTime date =
+        DateTime.fromMillisecondsSinceEpoch(timestamp * 1000).toLocal();
 
     // Array of month abbreviations
     List<String> months = [
