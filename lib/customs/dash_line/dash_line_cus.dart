@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 class DashedLineWidget extends StatelessWidget {
-  final double width;
-  final double height;
-  final double dashWidth;
-  final double dashSpace;
-  final Color? color;
   const DashedLineWidget({
     super.key,
-    required this.width,
-    required this.height,
+    this.width,
+    this.height,
     required this.dashWidth,
     required this.dashSpace,
     this.color,
   });
+  final double? width;
+  final double? height;
+  final double dashWidth;
+  final double dashSpace;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +32,6 @@ class DashedLineWidget extends StatelessWidget {
 }
 
 class DashedLinePainter extends CustomPainter {
-  final double width;
-  final double height;
-  final double dashWidth;
-  final double dashSpace;
-  final Color? color;
-
   const DashedLinePainter(
     this.width,
     this.height,
@@ -45,6 +39,11 @@ class DashedLinePainter extends CustomPainter {
     this.dashSpace,
     this.color,
   );
+  final double width;
+  final double height;
+  final double dashWidth;
+  final double dashSpace;
+  final Color? color;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -70,7 +69,7 @@ void main() {
       appBar: AppBar(title: Text('Dashed Line Example')),
       body: Center(
         child: DashedLineWidget(
-          width: 0, height: 0, dashSpace: 3.0, dashWidth: 5.0,
+          width: 0, height: 0, dashSpace: 3.0, dashWidth: 9.0,
           color: Colors.grey, // You can change the color here
         ),
       ),
