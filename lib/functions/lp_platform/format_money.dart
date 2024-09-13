@@ -1,5 +1,5 @@
 void main() {
-  print(formatMoney('19386012381.972', true, 'VND_USDT'));
+  print(formatMoney('19386012381.972456789', true, 'VND_USDT')); // Example
 }
 
 String? formatMoney(
@@ -23,13 +23,17 @@ String? formatMoney(
     if (str.contains('.')) {
       decimalNum = '.' + str.split('.')[1];
       str = str.split('.')[0];
+      // Limit decimal places to 6 characters
+      if (decimalNum.length > 7) {
+        decimalNum = decimalNum.substring(0, 7);
+      }
     }
     if (str.contains('-')) {
       negative = '-';
       str = str.replaceAll('-', '');
     }
 
-    // Remove trailing zeros in the decimal part
+    // Remove trailing zeros from the decimal part
     if (decimalNum.isNotEmpty) {
       decimalNum = decimalNum.replaceFirst(RegExp(r'0+$'), '');
       if (decimalNum == '.') {
