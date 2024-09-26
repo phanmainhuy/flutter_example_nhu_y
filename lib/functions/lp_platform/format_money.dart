@@ -10,6 +10,13 @@ String? formatMoney(
   /// MODIFY CODE ONLY BELOW THIS LINE
 
   try {
+    if (input == '') {
+      return '0';
+    }
+    if (input == '--') {
+      return '--';
+    }
+
     String str = input.replaceAll(',', '');
     String decimalNum = '';
     String negative = '';
@@ -21,19 +28,15 @@ String? formatMoney(
       str = (double.parse(str) / 1000000).toString();
     }
     if (str.contains('.')) {
-      decimalNum = '.' + str.split('.')[1];
+      decimalNum = '.${str.split('.')[1]}';
       str = str.split('.')[0];
-      // Limit decimal places to 6 characters
-      if (decimalNum.length > 7) {
-        decimalNum = decimalNum.substring(0, 7);
-      }
     }
     if (str.contains('-')) {
       negative = '-';
       str = str.replaceAll('-', '');
     }
 
-    // Remove trailing zeros from the decimal part
+    // Remove trailing zeros in the decimal part
     if (decimalNum.isNotEmpty) {
       decimalNum = decimalNum.replaceFirst(RegExp(r'0+$'), '');
       if (decimalNum == '.') {
