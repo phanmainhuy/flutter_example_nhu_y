@@ -7,7 +7,7 @@ void main() {
 }
 
 List<String> getGMTTimezoneList() {
-  // Initialize time zone data
+// Initialize time zone data
   tz.initializeTimeZones();
 
   // Get all available time zone locations
@@ -31,6 +31,26 @@ List<String> getGMTTimezoneList() {
 
   // Convert the Set to a list
   final gmtList = gmtOffsets.toList();
+
+  // Sort the list based on the numeric value of hours and minutes
+  gmtList.sort((a, b) {
+    final aParts = a.split(RegExp(r'[:+-]'));
+    final bParts = b.split(RegExp(r'[:+-]'));
+
+    final aSign = a.contains('-') ? -1 : 1;
+    final bSign = b.contains('-') ? -1 : 1;
+
+    final aHours = int.parse(aParts[1]) * aSign;
+    final bHours = int.parse(bParts[1]) * bSign;
+
+    if (aHours == bHours) {
+      final aMinutes = int.parse(aParts[2]);
+      final bMinutes = int.parse(bParts[2]);
+      return aMinutes.compareTo(bMinutes);
+    }
+
+    return aHours.compareTo(bHours);
+  });
 
   return gmtList;
 }
