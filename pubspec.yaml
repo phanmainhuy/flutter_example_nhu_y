@@ -43,6 +43,7 @@ dependencies:
   loading_indicator: ^3.1.1
   stacked_notification_cards: any
   dotted_border: ^2.1.0
+  timezone: ^0.9.4
   # decimal: ^3.0.2
 
 dev_dependencies:
