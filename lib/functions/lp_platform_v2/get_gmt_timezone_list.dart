@@ -7,7 +7,7 @@ void main() {
 }
 
 List<String> getGMTTimezoneList() {
-// Initialize time zone data
+  // Initialize time zone data
   tz.initializeTimeZones();
 
   // Get all available time zone locations
