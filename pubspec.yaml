@@ -44,6 +44,7 @@ dependencies:
   stacked_notification_cards: any
   dotted_border: ^2.1.0
   timezone: ^0.9.4
+  flutter_switch: ^0.3.2
   # decimal: ^3.0.2
 
 dev_dependencies:
