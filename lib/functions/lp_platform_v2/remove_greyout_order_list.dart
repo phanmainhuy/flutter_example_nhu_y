@@ -9,8 +9,12 @@ List<OrderDataItemStruct>? removeGreyoutOrderList(
       return oldOrderList;
     }
 
-    oldOrderList.removeWhere((order) => order.isDisable == true);
+    // print('removeGreyoutOrderList before: ${oldOrderList.length}');
+    // print(oldOrderList.toString());
 
+    oldOrderList.removeWhere((order) => order.isDisable == true);
+    // print('removeGreyoutOrderList after: ${oldOrderList.length}');
+    // print(oldOrderList.toString());
     return oldOrderList;
   } catch (e) {
     print('ERROR removeGreyoutOrderList: ${e.toString()}');

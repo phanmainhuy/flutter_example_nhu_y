@@ -7,11 +7,17 @@ void main() {
   // Manually format the date
 
   // Print the formatted date
-  print(formatUnixTimestamp(timestamp));
+  print(formatTimestampUnix(timestamp));
 }
 
 // Function to manually format DateTime
-String formatUnixTimestamp(String inputTimestamp) {
+String? formatTimestampUnix(String? inputTimestamp) {
+  /// MODIFY CODE ONLY BELOW THIS LINE
+
+  if (inputTimestamp == '' || inputTimestamp == null) {
+    return '';
+  }
+
   try {
     int timestamp = int.parse(inputTimestamp);
 
@@ -50,4 +56,6 @@ String formatUnixTimestamp(String inputTimestamp) {
   } catch (e) {
     return inputTimestamp;
   }
+
+  /// MODIFY CODE ONLY ABOVE THIS LINE
 }
