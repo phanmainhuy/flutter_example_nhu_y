@@ -103,8 +103,10 @@ List<CurrencyImageOptionModelStruct>? getListPair() {
       "isDisplay": false
     }
   ];
-  final listPair =
-      data.map((item) => CurrencyImageOptionModelStruct.fromMap(item)).toList();
+  final listPair = (data as List<dynamic>)
+      .map((item) => CurrencyImageOptionModelStruct.fromMap(item))
+      .toList();
+
   return listPair;
 
   /// MODIFY CODE ONLY ABOVE THIS LINE
