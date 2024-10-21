@@ -1,4 +1,4 @@
-import 'package:flutter_example_nhuy/model/currency_image_option_model_struct%20copy.dart';
+import 'package:flutter_example_nhuy/model/currency_image_option_model_struct.dart';
 
 List<CurrencyImageOptionModelStruct>? getListPair() {
   /// MODIFY CODE ONLY BELOW THIS LINE
