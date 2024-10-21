@@ -19,7 +19,7 @@ String formatBankNumber(
     return input;
   }
 
-  if (symbol == null || symbol == '') {
+  if (symbol == null || symbol == '' || symbol == 'null') {
     symbol = '';
   }
 
