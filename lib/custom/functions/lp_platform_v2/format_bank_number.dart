@@ -9,30 +9,34 @@ String formatBankNumber(
   int? separateNumber,
   String? symbol,
 ) {
+  /// MODIFY CODE ONLY BELOW THIS LINE
   if (input == null || input == '') {
     return '';
   }
+
   if (separateNumber == null || separateNumber == 0) {
     return input;
   }
-  // format String
-  String numStr = input.toString();
+
   if (symbol == null || symbol == '') {
     symbol = '';
   }
 
+  // format String
+  String numStr = input.toString();
+
   List<String> parts = [];
   try {
-    // Tách chuỗi thành các phần với độ dài tối đa là 4
     for (int i = 0; i < numStr.length; i += separateNumber) {
       int end = (i + 4 < numStr.length) ? i + separateNumber : numStr.length;
       parts.add(numStr.substring(i, end));
     }
 
-    // Ghép các phần lại với nhau bằng dấu " - "
     return parts.join(' $symbol ');
   } catch (e) {
     print('ERROR formatBankNumber: ${e.toString()}');
     return input;
   }
+
+  /// MODIFY CODE ONLY ABOVE THIS LINE
 }
