@@ -6,6 +6,7 @@ List<CountryImageOptionModelStruct> getListCountry() {
     {
       "id": "1",
       "name": "TH",
+      "fullName": "Thailand",
       "imagePath": "8s93ijpg0y7n/1.thailand-THB.png",
       "isSelected": false,
       "isDisplay": false
@@ -13,6 +14,7 @@ List<CountryImageOptionModelStruct> getListCountry() {
     {
       "id": "2",
       "name": "PH",
+      "fullName": "Philippines",
       "imagePath": "32cbpo0perwi/2.philippines-PHP.png",
       "isSelected": false,
       "isDisplay": false
@@ -20,6 +22,7 @@ List<CountryImageOptionModelStruct> getListCountry() {
     {
       "id": "3",
       "name": "MY",
+      "fullName": "Malaysia",
       "imagePath": "djjn31322hxz/3.myanmar-MYR.png",
       "isSelected": false,
       "isDisplay": false
@@ -27,6 +30,7 @@ List<CountryImageOptionModelStruct> getListCountry() {
     {
       "id": "4",
       "name": "SG",
+      "fullName": "Singapore",
       "imagePath": "42femq00xqsv/4.singapore-SGD.png",
       "isSelected": false,
       "isDisplay": false
@@ -34,6 +38,7 @@ List<CountryImageOptionModelStruct> getListCountry() {
     {
       "id": "5",
       "name": "KH",
+      "fullName": "Cambodia",
       "imagePath": "mvcjna9x2t8w/5.cambodia-KHR.png",
       "isSelected": false,
       "isDisplay": false
@@ -41,6 +46,7 @@ List<CountryImageOptionModelStruct> getListCountry() {
     {
       "id": "6",
       "name": "VN",
+      "fullName": "Vietnam",
       "imagePath": "ehaj67llhqfs/6.vietnam-VND.png",
       "isSelected": true,
       "isDisplay": false
@@ -48,6 +54,7 @@ List<CountryImageOptionModelStruct> getListCountry() {
     {
       "id": "7",
       "name": "CN",
+      "fullName": "China",
       "imagePath": "gobqrid7byr6/7.china-CNY.png",
       "isSelected": false,
       "isDisplay": false
@@ -55,6 +62,7 @@ List<CountryImageOptionModelStruct> getListCountry() {
     {
       "id": "8",
       "name": "HK",
+      "fullName": "Hong Kong",
       "imagePath": "246qdpq4hqaa/8.hongkong-HKD.png",
       "isSelected": false,
       "isDisplay": false
@@ -62,6 +70,7 @@ List<CountryImageOptionModelStruct> getListCountry() {
     {
       "id": "9",
       "name": "JP",
+      "fullName": "Japan",
       "imagePath": "e1pq2s22ipu6/9.japan-JPY.png",
       "isSelected": false,
       "isDisplay": false
@@ -69,6 +78,7 @@ List<CountryImageOptionModelStruct> getListCountry() {
     {
       "id": "10",
       "name": "KR",
+      "fullName": "South Korea",
       "imagePath": "mc4dazpv0snx/10.korea-KRW.png",
       "isSelected": false,
       "isDisplay": false
@@ -76,6 +86,7 @@ List<CountryImageOptionModelStruct> getListCountry() {
     {
       "id": "11",
       "name": "ID",
+      "fullName": "Indonesia",
       "imagePath": "xfwy6xbuk1aa/11.indonesia-IDR.png",
       "isSelected": false,
       "isDisplay": false
@@ -83,6 +94,7 @@ List<CountryImageOptionModelStruct> getListCountry() {
     {
       "id": "12",
       "name": "CA",
+      "fullName": "Canada",
       "imagePath": "thdm4jhufh3s/12.canada-CAD.png",
       "isSelected": false,
       "isDisplay": false
@@ -90,6 +102,7 @@ List<CountryImageOptionModelStruct> getListCountry() {
     {
       "id": "13",
       "name": "AU",
+      "fullName": "Australia",
       "imagePath": "26ogmrtk8zlm/13.australia-AUD.png",
       "isSelected": false,
       "isDisplay": false
@@ -97,6 +110,7 @@ List<CountryImageOptionModelStruct> getListCountry() {
     {
       "id": "14",
       "name": "SA",
+      "fullName": "Macao",
       "imagePath": "0xly0pcqix8p/14.macao-SAR.png",
       "isSelected": false,
       "isDisplay": false
