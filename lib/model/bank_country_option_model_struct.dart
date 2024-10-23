@@ -1,22 +1,22 @@
 class BankCountryOptionModelStruct {
   BankCountryOptionModelStruct({
-    String? id,
+    String? code,
     String? name,
-    String? imagePath,
-    String? isSelected,
-    String? isDisplay,
-  })  : _id = id,
+    String? short_name,
+    String? country,
+    bool? isSelected,
+  })  : _code = code,
         _name = name,
-        _imagePath = imagePath,
+        _short_name = short_name,
         _isSelected = isSelected,
-        _isDisplay = isDisplay;
+        _country = country;
 
-  // "id" field.
-  String? _id;
-  String get id => _id ?? '';
-  set id(String? val) => _id = val;
+  // "code" field.
+  String? _code;
+  String get code => _code ?? '';
+  set code(String? val) => _code = val;
 
-  bool hasId() => _id != null;
+  bool hascode() => _code != null;
 
   // "name" field.
   String? _name;
@@ -25,34 +25,34 @@ class BankCountryOptionModelStruct {
 
   bool hasname() => _name != null;
 
-  // "imagePath" field.
-  String? _imagePath;
-  String get imagePath => _imagePath ?? '';
-  set imagePath(String? val) => _imagePath = val;
+  // "short_name" field.
+  String? _short_name;
+  String get short_name => _short_name ?? '';
+  set short_name(String? val) => _short_name = val;
 
-  bool hasImagePath() => _imagePath != null;
+  bool hasshort_name() => _short_name != null;
 
   // "isSelected" field.
-  String? _isSelected;
-  String get isSelected => _isSelected ?? '';
-  set isSelected(String? val) => _isSelected = val;
+  bool? _isSelected;
+  bool get isSelected => _isSelected ?? false;
+  set isSelected(bool? val) => _isSelected = val;
 
   bool hasIsSelected() => _isSelected != null;
 
-  // "isDisplay" field.
-  String? _isDisplay;
-  String get isDisplay => _isDisplay ?? '';
-  set isDisplay(String? val) => _isDisplay = val;
+  // "country" field.
+  String? _country;
+  String get country => _country ?? '';
+  set country(String? val) => _country = val;
 
-  bool hasisDisplay() => _isDisplay != null;
+  bool hascountry() => _country != null;
 
   static BankCountryOptionModelStruct fromMap(Map<String, dynamic> data) =>
       BankCountryOptionModelStruct(
-        id: data['id'] as String?,
+        code: data['code'] as String?,
         name: data['name'] as String?,
-        imagePath: data['imagePath'] as String?,
-        isSelected: data['isSelected'] as String?,
-        isDisplay: data['isDisplay'] as String?,
+        short_name: data['short_name'] as String?,
+        isSelected: data['isSelected'] as bool?,
+        country: data['country'] as String?,
       );
 
   static BankCountryOptionModelStruct? maybeFromMap(dynamic data) => data is Map
@@ -60,11 +60,11 @@ class BankCountryOptionModelStruct {
       : null;
 
   Map<String, dynamic> toMap() => {
-        'id': _id,
+        'code': _code,
         'name': _name,
-        'imagePath': _imagePath,
+        'short_name': _short_name,
         'isSelected': _isSelected,
-        'isDisplay': _isDisplay,
+        'country': _country,
       };
 
   @override
@@ -73,10 +73,10 @@ class BankCountryOptionModelStruct {
   @override
   bool operator ==(Object other) {
     return other is BankCountryOptionModelStruct &&
-        id == other.id &&
+        code == other.code &&
         name == other.name &&
-        imagePath == other.imagePath &&
+        short_name == other.short_name &&
         isSelected == other.isSelected &&
-        isDisplay == other.isDisplay;
+        country == other.country;
   }
 }
