@@ -7,6 +7,7 @@ bool checkListStringContainsString(
   List<String>? listString,
 ) {
   /// MODIFY CODE ONLY BELOW THIS LINE
+
   try {
     if (inputString == '' ||
         inputString == null ||
