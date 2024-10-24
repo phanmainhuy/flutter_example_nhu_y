@@ -294,7 +294,7 @@ String getBankNameFromBin(String? bankBin) {
 
   for (var bank in bankData) {
     if (bank['code'] == bankBin) {
-      return bank['name'];
+      return bank['short_name'];
     }
   }
 
