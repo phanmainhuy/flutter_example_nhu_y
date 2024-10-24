@@ -4,8 +4,12 @@ void main() {
   print(getBankNameFromBin('970403'));
 }
 
-String getBankNameFromBin(String bankBin) {
+String getBankNameFromBin(String? bankBin) {
   /// MODIFY CODE ONLY BELOW THIS LINE
+
+  if (bankBin == null || bankBin == '') {
+    return '';
+  }
 
   dynamic bankData = [
     {
