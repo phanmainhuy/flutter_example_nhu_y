@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_example_nhuy/model/bank_country_option_model_struct.dart';
 
-List<BankCountryOptionModelStruct> getListBank() {
+List<BankCountryOptionModelStruct> getListBankCountry() {
   /// MODIFY CODE ONLY BELOW THIS LINE
 
   dynamic bank = [
