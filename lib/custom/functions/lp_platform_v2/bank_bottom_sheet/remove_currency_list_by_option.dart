@@ -15,7 +15,7 @@ List<BankCurrencyModelStruct>? removeCurrencyListByOption(
     return oldCurrencyList;
   }
   try {
-    // Check option [id, name, isDefault]
+    // Check option [id, name, isDefault, isAlwaysUse]
     switch (optionRemove) {
       case 'id':
         oldCurrencyList.removeWhere((item) => item.id == inputRemove);
@@ -25,6 +25,9 @@ List<BankCurrencyModelStruct>? removeCurrencyListByOption(
         break;
       case 'isDefault':
         oldCurrencyList.removeWhere((item) => item.isDefault == true);
+        break;
+      case 'isAlwaysUse':
+        oldCurrencyList.removeWhere((item) => item.isAlwaysUse == true);
         break;
     }
     return oldCurrencyList;
