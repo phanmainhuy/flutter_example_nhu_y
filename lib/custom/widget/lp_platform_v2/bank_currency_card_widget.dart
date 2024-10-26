@@ -1,29 +1,3 @@
-// {
-//             "Key": "",
-//             "Id": "",
-//             "Rev": "",
-//             "uuid": "14f01f0f-50e6-4dca-ad3e-181c67504626",
-//             "userId": "f0331587-ddde-43ff-a434-fccc7d2fcac6",
-//             "bankDetail": {
-//                 "bankCountry": "VN",
-//                 "bankName": "",
-//                 "bankBin": "970429",
-//                 "bankHolder": "Legal Name nek",
-//                 "bankNumber": "123123123313"
-//             },
-//             "createdAt": "2024-10-25T06:46:04Z",
-//             "updatedAt": "2024-10-25T06:46:04Z",
-//             "currencies": [
-//                 "VND"
-//             ],
-//             "currenciesDefault": [
-//                 "VND"
-//             ],
-//             "currenciesAlwaysUse": [
-//                 "VND"
-//             ]
-//         }
-
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -35,7 +9,9 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(title: Text('Bank Info Card')),
         body: BankCurrencyCardWidget(
-          currencies: ['THB', 'JPY', 'CNY', 'VND'],
+          currencies: ["VND", "USD", "CNY", "THB", "AUD"],
+          currenciesDefault: ["VND", 'CNY'],
+          currenciesAlwaysUse: ["VND"],
         ),
       ),
     );
@@ -46,9 +22,25 @@ class BankCurrencyCardWidget extends StatelessWidget {
   const BankCurrencyCardWidget({
     super.key,
     required this.currencies,
+    required this.currenciesDefault,
+    required this.currenciesAlwaysUse,
+    this.width,
+    this.height,
+    this.textColor,
+    this.textAlwaysUseColor,
+    this.defaultColor,
+    this.normalColor,
   });
 
   final List<String> currencies;
+  final List<String> currenciesDefault;
+  final List<String> currenciesAlwaysUse;
+  final double? width;
+  final double? height;
+  final Color? textColor;
+  final Color? textAlwaysUseColor;
+  final Color? defaultColor;
+  final Color? normalColor;
 
   @override
   Widget build(BuildContext context) {
@@ -59,13 +51,46 @@ class BankCurrencyCardWidget extends StatelessWidget {
           spacing: 8.0,
           runSpacing: 4.0,
           children: currencies.map((currency) {
+            // Determine the style based on conditions
+            bool isAlwaysUse = currenciesAlwaysUse.contains(currency);
+            bool isDefault = currenciesDefault.contains(currency);
+
             return Chip(
-              label: Text(
-                '$currency • Always use',
-                style: TextStyle(color: Colors.orange),
+              label: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: currency,
+                      style: TextStyle(
+                        color: textColor ?? Colors.black,
+                        fontSize: 14,
+                      ),
+                    ),
+                    if (isAlwaysUse)
+                      TextSpan(
+                        text: ' • ',
+                        style: TextStyle(
+                          color: normalColor ?? Colors.grey,
+                          fontSize: 14,
+                        ),
+                      ),
+                    if (isAlwaysUse)
+                      TextSpan(
+                        text: 'Always use',
+                        style: TextStyle(
+                          color: textAlwaysUseColor ?? Colors.black,
+                          fontSize: 10,
+                        ),
+                      ),
+                  ],
+                ),
               ),
               shape: StadiumBorder(
-                side: BorderSide(color: Colors.orange),
+                side: BorderSide(
+                  color: isAlwaysUse || isDefault
+                      ? (defaultColor ?? Colors.orange)
+                      : (normalColor ?? Colors.grey),
+                ),
               ),
               backgroundColor: Colors.transparent,
             );
