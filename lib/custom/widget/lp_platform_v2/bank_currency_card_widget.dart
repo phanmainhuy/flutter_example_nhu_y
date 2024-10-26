@@ -51,41 +51,33 @@ class BankCurrencyCardWidget extends StatelessWidget {
           spacing: 8.0,
           runSpacing: 4.0,
           children: currencies.map((currency) {
-            // Determine the style based on conditions
             bool isAlwaysUse = currenciesAlwaysUse.contains(currency);
             bool isDefault = currenciesDefault.contains(currency);
 
             return Chip(
-              label: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: currency,
+              label: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    currency,
+                    style: TextStyle(
+                      color: textColor ?? Colors.black,
+                      fontSize: 14,
+                    ),
+                  ),
+                  if (isAlwaysUse)
+                    Text(
+                      ' • Always use',
                       style: TextStyle(
-                        color: textColor ?? Colors.black,
-                        fontSize: 14,
+                        color: textAlwaysUseColor ?? Colors.black,
+                        fontSize: 10,
                       ),
                     ),
-                    if (isAlwaysUse)
-                      TextSpan(
-                        text: ' • ',
-                        style: TextStyle(
-                          color: normalColor ?? Colors.grey,
-                          fontSize: 14,
-                        ),
-                      ),
-                    if (isAlwaysUse)
-                      TextSpan(
-                        text: 'Always use',
-                        style: TextStyle(
-                          color: textAlwaysUseColor ?? Colors.black,
-                          fontSize: 10,
-                        ),
-                      ),
-                  ],
-                ),
+                ],
               ),
-              shape: StadiumBorder(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
                 side: BorderSide(
                   color: isAlwaysUse || isDefault
                       ? (defaultColor ?? Colors.orange)
