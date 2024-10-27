@@ -17,6 +17,7 @@ class BankFilterDataModelStruct {
     List<String>? currenciesAlwaysUse,
     bool? showBankNumber,
     bool? isSelected,
+    bool? checkedDefaultAlwaysUse,
   })  : _key = key,
         _id = id,
         _rev = rev,
@@ -29,7 +30,8 @@ class BankFilterDataModelStruct {
         _currenciesDefault = currenciesDefault,
         _currenciesAlwaysUse = currenciesAlwaysUse,
         _showBankNumber = showBankNumber,
-        _isSelected = isSelected;
+        _isSelected = isSelected,
+        _checkedDefaultAlwaysUse = checkedDefaultAlwaysUse;
 
   // "Key" field.
   String? _key;
@@ -137,6 +139,11 @@ class BankFilterDataModelStruct {
   bool get isSelected => _isSelected ?? false;
   set isSelected(bool? val) => _isSelected = val;
 
+  // "checkedDefaultAlwaysUse" field.
+  late bool? _checkedDefaultAlwaysUse;
+  bool get checkedDefaultAlwaysUse => _checkedDefaultAlwaysUse ?? false;
+  set checkedDefaultAlwaysUse(bool? val) => _checkedDefaultAlwaysUse = val;
+
   bool hasIsSelected() => _isSelected != null;
 
   static BankFilterDataModelStruct fromMap(Map<String, dynamic> data) =>
@@ -155,6 +162,7 @@ class BankFilterDataModelStruct {
         currenciesAlwaysUse: (data['currenciesAlwaysUse']),
         showBankNumber: data['showBankNumber'] as bool?,
         isSelected: data['isSelected'] as bool?,
+        checkedDefaultAlwaysUse: data['checkedDefaultAlwaysUse'] as bool?,
       );
 
   static BankFilterDataModelStruct? maybeFromMap(dynamic data) => data is Map
@@ -175,6 +183,7 @@ class BankFilterDataModelStruct {
         'currenciesAlwaysUse': _currenciesAlwaysUse,
         'showBankNumber': _showBankNumber,
         'isSelected': _isSelected,
+        'checkedDefaultAlwaysUse': _checkedDefaultAlwaysUse,
       };
 
   @override
@@ -201,6 +210,7 @@ class BankFilterDataModelStruct {
         ),
         'showBankNumber': (_showBankNumber,),
         'isSelected': (_isSelected,),
+        'checkedDefaultAlwaysUse': (_checkedDefaultAlwaysUse),
       };
 
   @override
@@ -221,6 +231,7 @@ class BankFilterDataModelStruct {
         currenciesDefault == other.currenciesDefault &&
         currenciesAlwaysUse == other.currenciesAlwaysUse &&
         showBankNumber == other.showBankNumber &&
+        checkedDefaultAlwaysUse == other.checkedDefaultAlwaysUse &&
         isSelected == other.isSelected;
   }
 }
@@ -236,6 +247,7 @@ BankFilterDataModelStruct createBankFilterDataModelStruct({
   String? updatedAt,
   bool? showBankNumber,
   bool? isSelected,
+  bool? checkedDefaultAlwaysUse,
 }) =>
     BankFilterDataModelStruct(
       key: key,
@@ -248,4 +260,5 @@ BankFilterDataModelStruct createBankFilterDataModelStruct({
       updatedAt: updatedAt,
       showBankNumber: showBankNumber,
       isSelected: isSelected,
+      checkedDefaultAlwaysUse: checkedDefaultAlwaysUse,
     );

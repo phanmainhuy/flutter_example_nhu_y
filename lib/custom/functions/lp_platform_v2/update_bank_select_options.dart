@@ -29,21 +29,17 @@ List<BankFilterDataModelStruct> updateBankSelectOptions(
       }).toList();
 
       return updatedList;
+    } else if (options == 'SET_DEFAULT_ALWAYS_USE') {
+      List<BankFilterDataModelStruct> updatedList = oldBankList.map((bank) {
+        if (bank.uuid == bankUuid) {
+          bank.checkedDefaultAlwaysUse = check;
+          return bank;
+        }
+        return bank;
+      }).toList();
+
+      return updatedList;
     }
-
-    //  else if (options == 'SET_DEFAULT_ALWAYS_USE') {
-    //   List<BankFilterDataModelStruct> updatedList = oldBankList.map((bank) {
-    //     if (bank.uuid == bankUuid) {
-    //       if (options == 'SHOW_BANK_NUMBER') {
-    //         bank. = check;
-    //         return bank;
-    //       }
-    //     }
-    //     return bank;
-    //   }).toList();
-
-    //   return updatedList;
-    // }
     return [];
   } catch (e) {
     print('ERROR updateBankSelectOptions: ${e.toString()}');
