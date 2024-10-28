@@ -2,11 +2,13 @@ class CountryImageOptionModelStruct {
   CountryImageOptionModelStruct({
     String? id,
     String? name,
+    String? fullName,
     String? imagePath,
     bool? isSelected,
     bool? isDisplay,
   })  : _id = id,
         _name = name,
+        _fullName = fullName,
         _imagePath = imagePath,
         _isSelected = isSelected,
         _isDisplay = isDisplay;
@@ -24,6 +26,11 @@ class CountryImageOptionModelStruct {
   set name(String? val) => _name = val;
 
   bool hasname() => _name != null;
+
+  // "fullName" field.
+  String? _fullName;
+  String get fullName => _fullName ?? '';
+  set fullName(String? val) => _fullName = val;
 
   // "imagePath" field.
   String? _imagePath;
@@ -50,6 +57,7 @@ class CountryImageOptionModelStruct {
       CountryImageOptionModelStruct(
         id: data['id'] as String?,
         name: data['name'] as String?,
+        fullName: data['fullName'] as String?,
         imagePath: data['imagePath'] as String?,
         isSelected: data['isSelected'] as bool?,
         isDisplay: data['isDisplay'] as bool?,
@@ -63,6 +71,7 @@ class CountryImageOptionModelStruct {
   Map<String, dynamic> toMap() => {
         'id': _id,
         'name': _name,
+        'fullName': _fullName,
         'imagePath': _imagePath,
         'isSelected': _isSelected,
         'isDisplay': _isDisplay,
@@ -76,6 +85,7 @@ class CountryImageOptionModelStruct {
     return other is CountryImageOptionModelStruct &&
         id == other.id &&
         name == other.name &&
+        fullName == other.fullName &&
         imagePath == other.imagePath &&
         isSelected == other.isSelected &&
         isDisplay == other.isDisplay;
