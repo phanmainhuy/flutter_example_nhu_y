@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class CountryImageOptionModelStruct {
   CountryImageOptionModelStruct({
     String? id,
@@ -6,11 +8,13 @@ class CountryImageOptionModelStruct {
     String? imagePath,
     bool? isSelected,
     bool? isDisplay,
+    bool? isDisableSelected,
   })  : _id = id,
         _name = name,
         _fullName = fullName,
         _imagePath = imagePath,
         _isSelected = isSelected,
+        _isDisableSelected = isDisableSelected,
         _isDisplay = isDisplay;
 
   // "id" field.
@@ -53,6 +57,12 @@ class CountryImageOptionModelStruct {
 
   bool hasisDisplay() => _isDisplay != null;
 
+  bool? _isDisableSelected;
+  bool get isDisableSelected => isDisableSelected ?? false;
+  set isDisableSelected(bool? val) => _isDisableSelected = val;
+
+  bool hasisDisableSelected() => _isDisableSelected != null;
+
   static CountryImageOptionModelStruct fromMap(Map<String, dynamic> data) =>
       CountryImageOptionModelStruct(
         id: data['id'] as String?,
@@ -61,6 +71,7 @@ class CountryImageOptionModelStruct {
         imagePath: data['imagePath'] as String?,
         isSelected: data['isSelected'] as bool?,
         isDisplay: data['isDisplay'] as bool?,
+        isDisableSelected: data['isDisableSelected'] as bool,
       );
 
   static CountryImageOptionModelStruct? maybeFromMap(dynamic data) =>
@@ -75,6 +86,7 @@ class CountryImageOptionModelStruct {
         'imagePath': _imagePath,
         'isSelected': _isSelected,
         'isDisplay': _isDisplay,
+        'isDisableSelected': _isDisableSelected,
       };
 
   @override
@@ -88,6 +100,7 @@ class CountryImageOptionModelStruct {
         fullName == other.fullName &&
         imagePath == other.imagePath &&
         isSelected == other.isSelected &&
+        isDisableSelected == other.isDisableSelected &&
         isDisplay == other.isDisplay;
   }
 }

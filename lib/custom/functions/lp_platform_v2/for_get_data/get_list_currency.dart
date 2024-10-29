@@ -108,6 +108,9 @@ List<CurrencyImageOptionModelStruct> getListCurrency() {
       .map((item) => CurrencyImageOptionModelStruct.fromMap(item))
       .toList();
 
+  // sort
+  listCurrency.sort((a, b) => a.name.compareTo(b.name));
+
   return listCurrency;
 
   /// MODIFY CODE ONLY ABOVE THIS LINE

@@ -107,6 +107,9 @@ List<CurrencyImageOptionModelStruct>? getListPair() {
       .map((item) => CurrencyImageOptionModelStruct.fromMap(item))
       .toList();
 
+  // sort
+  listPair.sort((a, b) => a.name.compareTo(b.name));
+
   return listPair;
 
   /// MODIFY CODE ONLY ABOVE THIS LINE
