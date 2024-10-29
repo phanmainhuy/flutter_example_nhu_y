@@ -1,7 +1,7 @@
-import 'package:flutter_example_nhuy/model/pair_image_option_model_struct.dart';
+import 'package:flutter_example_nhuy/model/currency_image_option_model_struct.dart';
 
-List<PairImageOptionModelStruct> handlePairList(
-  List<PairImageOptionModelStruct> pairList,
+List<CurrencyImageOptionModelStruct> handlePairList(
+  List<CurrencyImageOptionModelStruct> pairList,
   String idSelected,
   bool isMultiOptions,
 ) {
@@ -12,25 +12,23 @@ List<PairImageOptionModelStruct> handlePairList(
   if (pairList == []) {
     return [];
   } else if (isMultiOptions) {
-    return pairList;
+    List<CurrencyImageOptionModelStruct> _pairList = pairList;
+    for (int i = 0; i < _pairList.length; i++) {
+      if (_pairList[i].id == idSelected) {
+        _pairList[i].isSelected = true;
+      }
+    }
+    return _pairList;
   } else {
     try {
-      List<PairImageOptionModelStruct> _pairList = pairList;
-      // print('=====START======');
-      // print('idSelected: $idSelected');
-
+      List<CurrencyImageOptionModelStruct> _pairList = pairList;
       for (int i = 0; i < _pairList.length; i++) {
         if (_pairList[i].isSelected == true && _pairList[i].id != idSelected) {
           _pairList[i].isSelected = false;
-          // print('---_pairList[i] change true -> false ---\n $i ${_pairList[i]}');
         } else if (_pairList[i].id == idSelected) {
           _pairList[i].isSelected = true;
-          // print('---_pairList[i] turn on true---\n $i ${_pairList[i]}');
         }
       }
-
-      // print('=====END======');
-      // print(_pairList);
       return _pairList;
     } catch (e) {
       print("ERROR handlePairList: ${e.toString()}");
