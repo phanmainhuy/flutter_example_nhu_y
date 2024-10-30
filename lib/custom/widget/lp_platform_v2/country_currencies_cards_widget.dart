@@ -1,5 +1,22 @@
 import 'package:flutter/material.dart';
 
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Bank Info Card')),
+        body: const CountryCurrenciesCardsWidget(
+          currencies: ["VND", "USD", "CNY", "THB", "AUD"],
+          defaultCurrency: "VND",
+        ),
+      ),
+    );
+  }
+}
+
 class CountryCurrenciesCardsWidget extends StatelessWidget {
   const CountryCurrenciesCardsWidget({
     super.key,
@@ -29,7 +46,7 @@ class CountryCurrenciesCardsWidget extends StatelessWidget {
           spacing: 8.0,
           runSpacing: 4.0,
           children: currencies.map((currency) {
-            bool isDefault = currencies.contains(defaultCurrency);
+            bool isDefault = (currency == defaultCurrency);
             return Chip(
               label: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -47,7 +64,7 @@ class CountryCurrenciesCardsWidget extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4),
                 side: BorderSide(
-                  color: isDefault || isDefault
+                  color: isDefault
                       ? (defaultColor ?? Colors.orange)
                       : (normalColor ?? Colors.grey),
                 ),
