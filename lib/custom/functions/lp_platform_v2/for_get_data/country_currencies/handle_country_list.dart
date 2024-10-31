@@ -14,8 +14,10 @@ List<CountryImageOptionModelStruct> handleCountryList(
     return [];
   } else if (isMultiOptions) {
     for (int i = 0; i < countryListNew.length; i++) {
-      if (countryListNew[i].id == idSelected) {
-        countryListNew[i].isSelected = true;
+      if (!countryListNew[i].isDisableSelected) {
+        if (countryListNew[i].id == idSelected) {
+          countryListNew[i].isSelected = true;
+        }
       }
     }
     return countryListNew;
@@ -24,12 +26,13 @@ List<CountryImageOptionModelStruct> handleCountryList(
       for (int i = 0; i < countryListNew.length; i++) {
         if (countryListNew[i].isDisableSelected == true) {
           countryListNew[i].isSelected = false;
-        }
-        if (countryListNew[i].isSelected == true &&
-            countryListNew[i].id != idSelected) {
-          countryListNew[i].isSelected = false;
-        } else if (countryListNew[i].id == idSelected) {
-          countryListNew[i].isSelected = true;
+        } else {
+          if (countryListNew[i].isSelected == true &&
+              countryListNew[i].id != idSelected) {
+            countryListNew[i].isSelected = false;
+          } else if (countryListNew[i].id == idSelected) {
+            countryListNew[i].isSelected = true;
+          }
         }
       }
       return countryListNew;
